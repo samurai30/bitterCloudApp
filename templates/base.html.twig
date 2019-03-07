@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bitter{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="icon" href="{{ asset('img/twitter_PNG2.png') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.min.css">
+    {% endblock %}
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0"
+       href="{{ path('micro_post_index') }}"><img src="{{ asset('img/twitter_PNG2.png') }}" class="img-fluid" width="25%"> Bitter</a>
+    <div class="w-100 order-1 order-md-0">
+        <ul class="navbar-nav px-3">
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="{{ path('micro_post_add') }}">Add new</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="order-2 order-md-1">
+        <ul class="navbar-nav px-3">
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link"
+                       href="{{ path('micro_post_user', {'username': app.user.username}) }}">{{ app.user.fullName }}</a>
+                </li>
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link"
+                       href="{{ path('security_logout') }}">Sign out</a>
+                </li>
+            {% else %}
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link"
+                       href="{{ path('security_login') }}">Sign in</a>
+                </li>
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="{{ path('user_register') }}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+
+        {% block body %}
+            <div class="card">
+                <div class="card-body">
+                    <img src="https://www.freeiconspng.com/uploads/welcome-png-12.png" class="img-fluid" width="100%"/>
+
+                </div>
+
+
+            </div>
+            <div class="text-right">
+                <a href="{{ path('micro_post_index') }}" class="badge badge-light"><p class="text-secondary">Click here to view more.</p></a>
+            </div>
+
+        {% endblock %}
+
+
+    </div>
+
+</main>
+{% block javascripts %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135651603-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135651603-1');
+    </script>
+
+    <script src="{{ asset('build/js/app.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/bloodhound.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.jquery.js"></script>
+{% endblock %}
+</body>
+</html>

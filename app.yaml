@@ -1,0 +1,11 @@
+runtime: php
+env: flex
+
+runtime_config:
+  document_root: public
+  front_controller_file: index.php
+
+env_variables:
+  APP_ENV: "prod"
+  APP_SECRET: "d282854e9f983088aaafb3e10256e41c"
+  DATABASE_URL: mysql://pH53O34ZQ9:RwEclhzqR0@remotemysql.com:3306/pH53O34ZQ9

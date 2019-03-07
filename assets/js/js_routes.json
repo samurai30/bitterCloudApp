@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"search":{"tokens":[["variable","\/","[^\/]++","username",true],["text","\/search"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}
